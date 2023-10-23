@@ -12,54 +12,48 @@ class DocenteController extends Controller
      */
     public function index()
     {
-        //
+        $docente = new Docente();
+       return $docente->all();
+
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $docente = new Docente();
+        $docente->nombre = $request->nombre;
+        $docente->apellido = $request->apellido;
+        $docente->email = $request->email;
+        $docente->save();
+        return "Docente añadido";
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Docente $docente)
+    public function show(string $id)
     {
-        //
+        return Docente::where('id', $id)->get();
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Docente $docente)
+ 
+    public function update(Request $request, string $id)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Docente $docente)
-    {
-        //
+        $docente = Docente::find('id');
+        $docente->nombre = $request->nombre;
+        $docente->apellido = $request->apellido;
+        $docente->emanil = $request->email;
+        $docente->save();
+        return "Docente Actualizado";
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Docente $docente)
+    public function destroy(string $id)
     {
-        //
+        $docente = Docente::find('id');
+        $docente->delete();
+        return "Docente Eliminado";
+
     }
 }

@@ -12,54 +12,44 @@ class CursoController extends Controller
      */
     public function index()
     {
-        //
+        $curso = new Curso();
+        return $curso->all();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $curso = new Curso();
+        $curso->id_docente = $request->id_docente;
+        $curso->nombre_curso = $request->nombre_curso;
+        $curso->save();
+        return "Curso añadido";
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Curso $curso)
+    public function show(string $id)
     {
-        //
+        return Curso::where('id', $id)->get();
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Curso $curso)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Curso $curso)
+    public function update(Request $request, string $id)
     {
-        //
+        $curso = Curso::find('id');
+        $curso->id_docente = $request->id_docente;
+        $curso->nombre_curso = $request->nombre_curso;
+        $curso->save();
+        return "Curso Actualizado";
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Curso $curso)
+    public function destroy(string $id)
     {
-        //
+        $curso = Curso::find('id');
+        $curso->delete();
+        return "Curso Eliminado";
     }
 }

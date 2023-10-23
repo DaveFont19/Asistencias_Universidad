@@ -12,54 +12,48 @@ class AsistenciaController extends Controller
      */
     public function index()
     {
-        //
+        $asistencia = new Asistencia();
+       return $asistencia->all();
+
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $asistencia = new Asistencia();
+        $asistencia->id_inscrito = $request->id_inscrito;
+        $asistencia->asistencia = $request->asistencia;
+        $asistencia->fecha_asistencia = $request->fecha_asistencia;
+        $asistencia->save();
+        return "Clase inscrita añadida";
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Asistencia $asistencia)
+    public function show(string $id)
     {
-        //
+        return Asistencia::where('id', $id)->get();
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Asistencia $asistencia)
+ 
+    public function update(Request $request, string $id)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Asistencia $asistencia)
-    {
-        //
+        $asistencia = Asistencia::find('id');
+        $asistencia->id_inscrito = $request->id_inscrito;
+        $asistencia->asistencia = $request->asistencia;
+        $asistencia->fecha_asistencia = $request->fecha_asistencia;
+        $asistencia->save();
+        return "Clase inscrita Actualizado";
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Asistencia $asistencia)
+    public function destroy(string $id)
     {
-        //
+        $asistencia = Asistencia::find('id');
+        $asistencia->delete();
+        return "Clase inscrita Eliminada";
+
     }
 }

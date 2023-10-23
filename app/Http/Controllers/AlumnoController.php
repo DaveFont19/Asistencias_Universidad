@@ -12,54 +12,50 @@ class AlumnoController extends Controller
      */
     public function index()
     {
-        //
+        $alumno = new Alumno();
+       return $alumno->all();
+
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $alumno = new Alumno();
+        $alumno->nombre = $request->nombre;
+        $alumno->apellido = $request->apellido;
+        $alumno->email = $request->email;
+        $alumno->grado = $request->grado;
+        $alumno->save();
+        return "ALumno añadido";
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Alumno $alumno)
+    public function show(string $id)
     {
-        //
+        return Alumno::where('id', $id)->get();
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Alumno $alumno)
+ 
+    public function update(Request $request, string $id)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Alumno $alumno)
-    {
-        //
+        $alumno = Alumno::find('id');
+        $alumno->nombre = $request->nombre;
+        $alumno->apellido = $request->apellido;
+        $alumno->emanil = $request->email;
+        $alumno->grado = $request->grado;
+        $alumno->save();
+        return "Alumno Actualizado";
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Alumno $alumno)
+    public function destroy(string $id)
     {
-        //
+        $alumno = Alumno::find('id');
+        $alumno->delete();
+        return "Alumno Eliminado";
+
     }
 }

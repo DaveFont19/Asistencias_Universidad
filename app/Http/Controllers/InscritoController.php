@@ -12,54 +12,48 @@ class InscritoController extends Controller
      */
     public function index()
     {
-        //
+        $inscrito = new Inscrito();
+       return $inscrito->all();
+
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $inscrito = new Inscrito();
+        $inscrito->nombre = $request->nombre;
+        $inscrito->apellido = $request->apellido;
+        $inscrito->email = $request->email;
+        $inscrito->save();
+        return "Clase inscrita añadida";
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Inscrito $inscrito)
+    public function show(string $id)
     {
-        //
+        return Inscrito::where('id', $id)->get();
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Inscrito $inscrito)
+ 
+    public function update(Request $request, string $id)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Inscrito $inscrito)
-    {
-        //
+        $inscrito = Inscrito::find('id');
+        $inscrito->id_curso = $request->id_curso;
+        $inscrito->id_alumno = $request->id_alumno;
+        $inscrito->save();
+        return "Clase inscrita Actualizado";
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Inscrito $inscrito)
+    public function destroy(string $id)
     {
-        //
+        $inscrito = Inscrito::find('id');
+        $inscrito->delete();
+        return "Clase inscrita Eliminada";
+
     }
 }
+
