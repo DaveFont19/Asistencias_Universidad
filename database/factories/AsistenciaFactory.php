@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Inscrito;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,9 @@ class AsistenciaFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'id_inscrito'=>Inscrito::inRandomOrder()->first()->id,
+            'asistencia'=>fake()->randomElement(['Asistencia', 'Retardo', 'falta']),
+            'fecha_asistencia'=>fake()->date()
         ];
     }
 }

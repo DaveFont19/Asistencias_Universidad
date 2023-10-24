@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Docente;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,9 @@ class CursoFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'id_docente' => Docente::inRandomOrder()->first()->id,
+            'nombre_curso'=>fake()->word()
         ];
     }
 }
+// 

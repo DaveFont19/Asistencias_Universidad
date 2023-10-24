@@ -17,7 +17,10 @@ class AlumnoFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'nombre'=>fake()->firstName(),
+            'apellido'=>fake()->lastName(),
+            'email'=>fake()->email(),
+            'grado'=>fake()->numberBetween(1 , 8)
         ];
     }
 }

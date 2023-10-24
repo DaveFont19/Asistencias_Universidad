@@ -12,6 +12,6 @@ class InscritoSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        \App\Models\Inscrito::factory(30)->create();
     }
 }

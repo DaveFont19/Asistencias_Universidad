@@ -12,6 +12,6 @@ class AsistenciaSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        \App\Models\Asistencia::factory(30)->create();
     }
 }

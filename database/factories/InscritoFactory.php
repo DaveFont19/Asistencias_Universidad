@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Alumno;
+use App\Models\Curso;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +19,8 @@ class InscritoFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'id_curso'=>Curso::inRandomOrder()->first()->id,
+            'id_alumno'=>Alumno::inRandomOrder()->first()->id
         ];
     }
 }

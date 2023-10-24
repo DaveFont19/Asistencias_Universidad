@@ -17,7 +17,9 @@ class DocenteFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'nombre'=>fake()->firstName(),
+            'apellido'=>fake()->lastName(),
+            'email'=>fake()->email()
         ];
     }
 }
